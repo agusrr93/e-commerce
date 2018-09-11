@@ -1,0 +1,146 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+        <!------ Include the above in your HEAD tag ---------->
+        <link rel="stylesheet" type="text/css" href="style/custom.css">
+</head>
+<body>
+                
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Ecommerce Made Simple</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                    <ul class="nav nav-pills">
+							<li><a href="#"><i class="fa fa-phone"></i>0318663575</a></li>
+							<li><a href="#"><i class="fa fa-envelope"></i>randhani@domain.com</a></li>
+					</ul>
+                    
+                    <form class="form-inline my-2 my-lg-0">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-secondary btn-number">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <a class="btn btn-success btn-sm ml-3" href="cart.html">
+                            <i class="fa fa-shopping-cart"></i> Cart
+                            <span class="badge badge-light">3</span>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <section class="jumbotron text-center gbr">
+            <div class="container">
+                <h1 class="jumbotron-heading">Ecommerceku</h1>
+                <p class="lead text-muted mb-0">Tempat Belanja Terpercaya Masa Kini</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="category.html">Category</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Sub-category</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-3">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+                        <ul class="list-group category_block">
+                            <li class="list-group-item"><a href="category.html">All Product</a></li>
+                            <li class="list-group-item"><a href="category.html">Jeans</a></li>
+                            <li class="list-group-item"><a href="category.html">Cardigan</a></li>
+                            <li class="list-group-item"><a href="category.html">Blues</a></li>
+                            <li class="list-group-item"><a href="category.html">Sandal</a></li>
+                            <li class="list-group-item"><a href="category.html">Kaos</a></li>
+                        </ul>
+                    </div>
+                    <div class="card bg-light mb-3">
+                        <div class="card-header bg-success text-white text-uppercase">Last product</div>
+                        <div class="card-body">
+                            <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
+                            <h5 class="card-title">Nama Produk</h5>
+                            <p class="card-text">barang yang bisa dibeli</p>
+                            <p class="bloc_left_price">Rp 20000</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row prlist">
+
+                    </div>
+                        
+                </div>
+        
+            </div>
+        </div>              
+        <script>
+                    $.ajax({
+                        method: 'GET',
+                        url: 'http://localhost:3000'
+                    })
+                    .done(function (data) {
+                        showAllProduct(data)
+                    })
+                    .fail(function (err) {
+                        console.log(err);
+                    })
+    
+                function showAllProduct(data) {
+                    let product = data
+                    for (let i = 0; i < product.length; i++) {
+                        console.log(product[i].imgurl)
+                        $('.prlist').append(`
+                        <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card">
+                                    <img class="card-img-top" src=${product[i].imgurl}>
+                                    <div class="card-body">
+                                        <h4 class="card-title"><a href="product.html" title="View Product">${product[i].name}</a></h4>
+                                        <p class="card-text">${product[i].description}</p>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="btn btn-danger btn-block">${product[i].price}</p>
+                                            </div>
+                                            <div class="col">
+                                                <a href="#" class="btn btn-success btn-block">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+                    
+                        `)
+                    }
+                }
+    
+           </script>    
+  </body>
+</html>
